@@ -165,7 +165,7 @@ def ods_to_pdf(filename):
 	# Call XeLaTeX
 	import subprocess
 	import os
-        print(os.getcwd())
+	print(os.getcwd())
         x=subprocess.call(['xelatex', fname])
 	if x : print('Error compiling LaTeX file {}: {}'.format(fname,x))
 	return x
