@@ -31,6 +31,7 @@ TODO: add management of object bonuses
 
 # Import Data from ODS file
 import pyexcel as p
+import os
 from tex_templates import *
 
 def to_int(x):
@@ -48,6 +49,7 @@ def add_BO(BO,cases):
 
 
 def ods_to_pdf(filename,server_path=None):
+	if server_path : filename=os.path.join(server_path,filename)
 	data=p.get_book(file_name=filename)
 
 	chars=data['Caratteristiche']
@@ -159,14 +161,15 @@ def ods_to_pdf(filename,server_path=None):
 		magici+oggetti+monete+incantesimi
 	)
 	fname='-'.join(info['Nome'].split())+'.tex'
+
+	if server_path : fname= os.path.join(server_path,fname)
 	with open(fname, 'w') as fout :
 		fout.write(res)
 	
 	# Call XeLaTeX
-	import subprocess
-	import os
 	if server_path : os.chdir(server_path)
 	print(os.getcwd())
+	import subprocess
 	x=subprocess.call(['xelatex', fname])
 	if x : print('Error compiling LaTeX file {}: {}'.format(fname,x))
 	return x
