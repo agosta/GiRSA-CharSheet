@@ -1,0 +1,136 @@
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{kvoptions}
+\SetupKeyvalOptions{
+	family=girsa,
+	prefix=girsa@
+}
+\DeclareStringOption[SampleChar]{nome}
+\DeclareStringOption[SampleChar]{razza}
+\DeclareStringOption[SampleChar]{professione}
+
+\ProcessKeyvalOptions*
+
+\RequirePackage{xltxtra}
+\RequirePackage{multicol}
+\RequirePackage{titlesec}
+\RequirePackage{xcolor}
+\RequirePackage[italian]{babel}
+\RequirePackage[a4paper,xetex,
+	hmargin=1cm,
+	vmargin=1.3cm,
+	head=1cm,
+	foot=0.2cm,
+]{geometry}
+\RequirePackage{fancyhdr}
+%\usepackage{libertine}
+\RequirePackage{fontspec}
+\RequirePackage{xhfill}
+\RequirePackage{tikzpagenodes}
+\RequirePackage{tabularx}
+\RequirePackage{tcolorbox}
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true, allcolors=bloodred}
+\RequirePackage{amssymb}
+\RequirePackage{xinttools}
+\RequirePackage{xintfrac}
+\RequirePackage{xspace}
+\RequirePackage{supertabular}
+\RequirePackage{colortbl}
+\tcbuselibrary{breakable}
+\pagestyle{empty}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\tcbsetforeverylayer{colback=white}
+\RequirePackage{background}
+\IfFileExists{background.pdf}{%
+	\backgroundsetup{placement=center,scale=1.1,angle=0,contents={\includegraphics{background.pdf}}}%
+}
+
+%% COLORS
+\definecolor{bloodred}{RGB}{74,93,35}
+\setlength{\columnseprule}{0.1pt}
+\def\columnseprulecolor{\color{bloodred}}%
+\definecolor{gold}{RGB}{233,195,27}
+
+
+%% FONTS
+\newfontfamily\sectionfont{Ringbearer}
+\newfontfamily\sansfont{Latin Modern Sans}
+\setmainfont{Aniron}
+
+
+\setlength{\fboxsep}{1pt}
+\setlength{\fboxrule}{1pt}
+
+%% PAGE SETUP
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+\renewcommand{\subsectionmark}[1]{\markright{#1}{}}
+\fancyhf{}
+\fancyheadoffset{2cm} 
+
+  \fancyhead[EC]{%
+      \begin{tikzpicture}[remember picture,overlay]
+          \node[xshift=-0.3cm,yshift=2cm,font=\sectionfont] (number) at (current page.east) {\rotatebox{90}{\colorbox{bloodred}{{\color{white}{\large \hfill \girsa@nome, \girsa@razza\xspace \girsa@professione}}}}};
+      \end{tikzpicture}
+  }%
+  \fancyhead[OC]{%
+      \begin{tikzpicture}[remember picture,overlay]
+          \node[xshift=0.3cm,yshift=2cm,font=\sectionfont] (number) at (current page.west) {\rotatebox{-90}{\colorbox{bloodred}{{\color{white}{ \large \girsa@nome, \girsa@razza\xspace \girsa@professione}}}}};
+      \end{tikzpicture}
+  }%
+
+
+  \fancyfoot[EC]{%
+      \begin{tikzpicture}[remember picture,overlay]
+          \node[xshift=0.3cm,yshift=2cm,font=\sectionfont] (number) at (current page.west) {\rotatebox{90}{\colorbox{bloodred}{\parbox[1cm]{2cm}{\color{white}{\large \hfill \thepage}}}}};
+      \end{tikzpicture}
+  }%
+  \fancyfoot[OC]{%
+      \begin{tikzpicture}[remember picture,overlay]
+          \node[xshift=-0.3cm,yshift=2cm,font=\sectionfont] (number) at (current page.east) {\rotatebox{-90}{\colorbox{bloodred}{\parbox[1cm]{2cm}{\color{white}{ \large \thepage}}}}};
+      \end{tikzpicture}
+  }%
+
+\renewcommand{\headrulewidth}{0pt}
+
+
+
+\newtcolorbox{cbox}[1][]{%
+	colback=bloodred!10,
+	colframe=bloodred,
+	colbacktitle=bloodred,
+	opacityback=0.3,
+	opacityfill=0.1,
+	opacitybacktitle=0.9,
+	boxsep=1pt,
+	#1
+}
+
+%% LOZENGES
+\newcommand{\score}[2]{\xintFor*  ##1 in {\xintSeq[1]{1}{#1}} \do {\sansfont\xintifEq{##1}{11}{$\cdot$}{}$\blacklozenge$}\xintFor*  ##1 in {\xintSeq[1]{1}{#2}} \do {\sansfont\xintifEq{\xintAdd{##1}{#1}}{11}{$\cdot$}{}$\lozenge$}\xspace}
+
+\newcommand{\blankline}[1]{\xintFor* ##1 in {\xintSeq[1]{1}{#1}} \do { \underline{$\phantom{\lozenge}$}}}
+
+\newcommand{\emptyspace}[1]{\xintFor* ##1 in {\xintSeq[1]{1}{#1}} \do { $\phantom{\lozenge}$}}
+%\renewcommand{\emptyspace}[1]{\hfill}
+
+%% COLORS
+\newcommand{\headcolor}{\cellcolor{bloodred!50}}
+
+%% BOX FOR ABILITIES
+\newtcolorbox{abilbox}[3][]{%
+	colback=bloodred!10,
+	colframe=bloodred,
+	colbacktitle=bloodred,
+	opacityback=0.3,
+	opacityfill=0.1,
+	opacitybacktitle=0.9,
+	boxsep=1pt,
+	tabularx={p{0.2\textwidth}X||cp{0.05\textwidth}ccccp{0.07\textwidth}},
+	title={#2 \xintifEq{#3}{-1}{}{\fbox{#3}}},
+	#1
+}
+
+\newcommand{\abilhead}{\headcolor Abilit\`a &\headcolor  &\headcolor  Grado &\headcolor  Caratt. &\headcolor  Profess. &\headcolor  Oggetto &\headcolor Speciale &\headcolor Razza &\headcolor Totale\\}
+
+

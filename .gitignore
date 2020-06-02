@@ -12,6 +12,12 @@ __pycache__/
 # PDF output and backgrounds
 *.pdf
 
+# LaTeX intermediate files
+*.aux
+*.log
+*.out
+*.tex
+
 # Distribution / packaging
 .Python
 build/
