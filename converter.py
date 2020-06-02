@@ -4,7 +4,7 @@
 __doc__ = '''Converts a GiRSA ODS character sheet to a formatted file via XeLaTeX.
 
 To use as a library:
-	from script import ods_to_pdf
+	from converter import ods_to_pdf
 	ods_to_pdf(filename)
 
 TODO: detach Adolescenza from starting bonuses (e.g., languages known by default
