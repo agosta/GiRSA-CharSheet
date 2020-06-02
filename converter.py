@@ -173,7 +173,7 @@ def ods_to_pdf(filename,server_path=None):
 	x=subprocess.call(['xelatex', fname])
 	print("File {} has been generated!".format(fname))
 	if x : print('Error compiling LaTeX file {}: {}'.format(fname,x))
-	return x
+	return fname
 
 if __name__ == '__main__' :
 	from sys import argv
