@@ -53,9 +53,9 @@
 
 
 %% FONTS
-\newfontfamily\sectionfont{Ringbearer}
+\IfFontExistsTF{Ringbearer}{\newfontfamily\sectionfont{Ringbearer}}{\newfontfamily\sectionfont{Latin Modern Sans}}
 \newfontfamily\sansfont{Latin Modern Sans}
-\setmainfont{Aniron}
+\IfFontExistsTF{Aniron}{\setmainfont{Aniron}}{\setmainfont{Latin Modern Sans}}
 
 
 \setlength{\fboxsep}{1pt}
