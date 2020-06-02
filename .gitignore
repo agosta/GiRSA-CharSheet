@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# ODS test files
+*.ods
+
+# PDF output and backgrounds
+*.pdf
+
 # Distribution / packaging
 .Python
 build/
