@@ -20,7 +20,9 @@ TODO: extend to support dual classed characters (major extension, needs redesign
 of the Google Sheet as well!)
 
 TODO: add details of new weapons, spell lists, and languages, as well as all 
-major races and classes
+major races and classes to ODS
+
+TODO: add management of object bonuses
 '''
 
 # Import Data from ODS file
