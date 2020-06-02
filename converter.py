@@ -47,7 +47,7 @@ def add_BO(BO,cases):
 	return [ to_int(x)+to_int(BO) for x in cases ]
 
 
-def ods_to_pdf(filename):
+def ods_to_pdf(filename,server_path=None):
 	data=p.get_book(file_name=filename)
 
 	chars=data['Caratteristiche']
@@ -165,6 +165,7 @@ def ods_to_pdf(filename):
 	# Call XeLaTeX
 	import subprocess
 	import os
+	if server_path : os.chdir(server_path)
 	print(os.getcwd())
 	x=subprocess.call(['xelatex', fname])
 	if x : print('Error compiling LaTeX file {}: {}'.format(fname,x))
