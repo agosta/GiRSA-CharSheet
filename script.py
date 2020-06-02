@@ -8,6 +8,8 @@ from those learnt before level 1)
 
 TODO: enable direct reading from Google Drive via gread2 and Google API
 
+TODO: wrap in Flask Webapp, with password protection/authentication
+
 TODO: enable ouput to Salvatore's server to feed dice roller
 
 TODO: general refactoring for increased readability and more flexible management
