@@ -162,7 +162,7 @@ def ods_to_pdf(filename,server_path=None, password=None):
 	if password is None or password==passwd : auth='true'
 	# Write out the LaTeX file
 	res=template_global.format(
-		info['Nome'],info['Razza'], info['Classe'], auth,
+		info['Nome'],info['Razza'], info['Classe'], auth, 'fonts/',
 		scheda+lingue+armatura+liste,
 		caratteristiche+armi,
 		abilita,

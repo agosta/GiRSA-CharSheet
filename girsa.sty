@@ -8,6 +8,7 @@
 \DeclareStringOption[SampleChar]{razza}
 \DeclareStringOption[SampleChar]{professione}
 \DeclareBoolOption{authentic}
+\DeclareStringOption[SampleChar]{fontpath}
 
 \ProcessKeyvalOptions*
 
@@ -59,10 +60,10 @@
 
 %% FONTS
 \ifgirsa@authentic
- \newfontfamily\sectionfont{Ringbearer}
- \setmainfont{Aniron}
+ \newfontfamily{\sectionfont}[Path = \girsa@fontpath, Extension=.ttf]{RingbearerMedium-w173}
+ \setmainfont[Path = \girsa@fontpath, Extension=.ttf]{Aniron-7BaP}
 \else
-\newfontfamily\sectionfont{Latin Modern Sans}
+ \newfontfamily\sectionfont{Latin Modern Sans}
  \setmainfont{Latin Modern Sans}
  \fi
 \newfontfamily\sansfont{Latin Modern Sans}
