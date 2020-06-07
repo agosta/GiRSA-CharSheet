@@ -1,6 +1,6 @@
 # LaTeX Templates
 template_global='''\\documentclass[a4paper]{{article}}
-\\usepackage[nome={},razza={},professione={}]{{girsa}}
+\\usepackage[nome={},razza={},professione={},authentic={}]{{girsa}}
 
 \\begin{{document}}
 

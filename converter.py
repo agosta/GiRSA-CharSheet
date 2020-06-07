@@ -48,7 +48,7 @@ def add_BO(BO,cases):
 	return [ to_int(x)+to_int(BO) for x in cases ]
 
 
-def ods_to_pdf(filename,server_path=None):
+def ods_to_pdf(filename,server_path=None, password=None):
 	if server_path : filename=os.path.join(server_path,filename)
 	data=p.get_book(file_name=filename)
 
@@ -58,6 +58,12 @@ def ods_to_pdf(filename,server_path=None):
 	tarmi=data['Armi']
 	try : incan=data['Incantesimi']
 	except KeyError : incan=False
+	try : 
+		passwd=data['Autenticazione']
+		print(passwd)
+		passwd=passwd[0][0]
+		print(passwd)
+	except KeyError : passwd=None
 
 	# Extract character info
 	info=[]
@@ -152,9 +158,11 @@ def ods_to_pdf(filename,server_path=None):
 		incantesimi=template_incantesimi.format('\n'.join([template_incantesimo.format(*x) for x in incantesimi ]))
 	else : incantesimi=''
 
+	auth='false'
+	if password is None or password==passwd : auth='true'
 	# Write out the LaTeX file
 	res=template_global.format(
-		info['Nome'],info['Razza'], info['Classe'],
+		info['Nome'],info['Razza'], info['Classe'], auth,
 		scheda+lingue+armatura+liste,
 		caratteristiche+armi,
 		abilita,

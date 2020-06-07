@@ -7,6 +7,7 @@
 \DeclareStringOption[SampleChar]{nome}
 \DeclareStringOption[SampleChar]{razza}
 \DeclareStringOption[SampleChar]{professione}
+\DeclareBoolOption{authentic}
 
 \ProcessKeyvalOptions*
 
@@ -41,9 +42,13 @@
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \tcbsetforeverylayer{colback=white}
 \RequirePackage{background}
+
+\ifgirsa@authentic
 \IfFileExists{background.pdf}{%
 	\backgroundsetup{placement=center,scale=1.1,angle=0,contents={\includegraphics{background.pdf}}}%
 }
+\else
+\fi
 
 %% COLORS
 \definecolor{bloodred}{RGB}{74,93,35}
@@ -53,11 +58,14 @@
 
 
 %% FONTS
-%\newfontfamily\sectionfont{Ringbearer}
+\ifgirsa@authentic
+ \newfontfamily\sectionfont{Ringbearer}
+ \setmainfont{Aniron}
+\else
 \newfontfamily\sectionfont{Latin Modern Sans}
+ \setmainfont{Latin Modern Sans}
+ \fi
 \newfontfamily\sansfont{Latin Modern Sans}
-%\setmainfont{Aniron}
-\setmainfont{Latin Modern Sans}
 
 
 \setlength{\fboxsep}{1pt}
