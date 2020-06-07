@@ -160,7 +160,7 @@ def ods_to_pdf(filename,server_path=None, password=None):
 
 	auth='false'
 	if password is None or password==passwd : auth='true'
-	font_path = os.path.join(server_path,'fonts/') if server_path else 'fonts/'
+	fontpath = os.path.join(server_path,'fonts/') if server_path else 'fonts/'
 	# Write out the LaTeX file
 	res=template_global.format(
 		info['Nome'],info['Razza'], info['Classe'], auth, fontpath,
